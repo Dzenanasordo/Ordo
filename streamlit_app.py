@@ -1,25 +1,47 @@
 import streamlit as st
-import datetime
 
 st.title("Ordo – Husbyggets planering")
-
 st.write("Här kan du lägga till och hålla koll på allt som ska fixas med huset!")
 
-# Lista för att spara uppgifter
-if "tasks" not in st.session_state:
-    st.session_state.tasks = []
+# Hög prioritet
+st.subheader("✅ Hög prioritet (klart inom 2 veckor)")
+high_priority_tasks = [
+    "Kontakta vägföreningen 'Kjell' för intyg (Ermin)",
+    "Besiktning av vägen med Kjell (Ermin)",
+    "Tekniskt sektion för garaget (Dzana)",
+    "Kompletta handlingar till Daniel (Dzana)",
+    "Lämna ritningar till Mats för offert på extra arbete (Ermin/Dzana)",
+    "Inhämta offert från Markarbete och Snickare (Dzana)",
+    "Offert på garagebygget (Dzana)",
+    "Maila Nordea om kalkyl och offert för mark/övervåning (Dzana)",
+    "Kontakta Kristin för förhandsvärdering (Dzana)",
+    "Boka möte med banken för att starta upp krediten (Dzana)",
+    "Maila Avlin angående ändringar (Dzana)",
+    "Boka el-möte (Dzana)",
+    "Maila Niklas elektriker om spotlights och smart8plus (Dzana)"
+]
 
-# Formulär för att lägga till nya uppgifter
-with st.form("task_form"):
-    task = st.text_input("Vad behöver göras?")
-    due_date = st.date_input("Deadline", datetime.date.today())
-    submitted = st.form_submit_button("Lägg till")
+for task in high_priority_tasks:
+    st.checkbox(task)
 
-    if submitted and task:
-        st.session_state.tasks.append((task, due_date))
-        st.success(f"Uppgiften '{task}' är tillagd!")
+# Mellanprioritet
+st.subheader("✅ Mellanprioritet (klart senast vecka 23)")
+medium_priority_tasks = [
+    "Välja kakel (två offerter för två våningar, Happy Homes Bildahl) (Dzana)",
+    "Besöka FF Kakel och välja kakel till kök, toalett och golv (Dzana)",
+    "Kontakta Jonas kontrollansvarig om separat beskärning (Dzana)"
+]
 
-# Visa alla uppgifter
-st.subheader("Mina uppgifter")
-for i, (task, due_date) in enumerate(st.session_state.tasks):
-    st.write(f"{i+1}. {task} (Deadline: {due_date})")
+for task in medium_priority_tasks:
+    st.checkbox(task)
+
+# Låg prioritet
+st.subheader("✅ Låg prioritet (klart senast oktober 2025)")
+low_priority_tasks = [
+    "Budget för inredning av huset (Dzana)",
+    "Planering av möblering enligt Addes plan (Dzana)",
+    "Planera bygge av altan (vem snickrar?) (Dzana)"
+]
+
+for task in low_priority_tasks:
+    st.checkbox(task)
